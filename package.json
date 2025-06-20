@@ -1,0 +1,21 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build"
+    },
+    "devDependencies": {
+        "axios": "^1.1.2",
+        "laravel-vite-plugin": "^0.7.2",
+        "pusher-js": "^8.4.0",
+        "vite": "^4.0.0"
+    },
+    "dependencies": {
+        "bootstrap": "^4.6.2",
+        "jquery": "^3.7.1",
+        "laravel-echo": "^2.0.2",
+        "malihu-custom-scrollbar-plugin": "^3.1.5",
+        "popper.js": "^1.16.1",
+        "simplebar": "^6.3.1"
+    }
+}

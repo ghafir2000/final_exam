@@ -1,0 +1,203 @@
+/* Custom CSS for Chat Widget Positioning */
+
+#chat-widget-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000; /* Ensure it's above other content */
+}
+
+#chat-toggle-btn {
+    width: 50px; /* Size of the button */
+    height: 50px;
+    padding: 0;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#chat-window {
+    position: fixed;
+    bottom: 80px; /* Position above the button */
+    right: 20px;
+    width: 500px; /* Adjust width as needed */
+    height: 550px; /* Adjust height as needed */
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 999; /* Slightly lower than button */
+    display: flex;
+    flex-direction: column;
+}
+
+#chat-window .card-header,
+#chat-window .card-footer {
+    /* Add styles from your template's CSS */
+     background-color: #007bff; /* Example header color */
+     color: white;
+     border-bottom: none;
+     padding: .75rem 1.25rem;
+}
+
+#chat-window .card-body.msg_card_body {
+    /* Add styles from your template's CSS */
+    overflow-y: auto; /* Make message body scrollable */
+    flex-grow: 1; /* Make it take available space */
+    padding: 15px; /* Add some padding */
+}
+
+/* Apply styles from your template's CSS to specific elements */
+
+.img_cont {
+    position: relative;
+    height: 40px;
+    width: 40px;
+}
+
+.user_img { /* Style for the partner (AI) image in the header */
+    height: 40px;
+    width: 40px;
+    border: 1.5px solid #f5f6fa;
+}
+.user_img_msg { /* Style for user/AI images in message bubbles */
+    height: 40px;
+    width: 40px;
+    border: 1.5px solid #f5f6fa;
+}
+.img_cont_msg { /* Container for message bubble images */
+    height: 40px;
+    width: 40px;
+}
+
+/* Online status styles removed as they don't apply to AI */
+/*
+.online_icon {
+    position: absolute;
+    height: 15px;
+    width: 15px;
+    background-color: #4cd137;
+    bottom: 0.5px;
+    right: 0.5px;
+    border: 1.5px solid white;
+    border-radius: 50%;
+}
+.offline {
+    background-color: #c23616;
+}
+*/
+
+.user_info { /* Styles for the name/info area in the header */
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 15px;
+}
+.user_info span { /* Style for the name (AI name) */
+    font-size: 20px;
+    color: white;
+}
+.user_info p { /* Style for the message count */
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.msg_cotainer { /* Style for incoming messages (from AI) */
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 10px;
+    border-radius: 25px;
+    background-color: #82ccdd;
+    padding: 10px;
+    position: relative;
+    max-width: 80%; /* Prevent messages from being too wide */
+    word-wrap: break-word; /* Break long words */
+}
+
+.msg_cotainer_send { /* Style for outgoing messages (from user) */
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 10px;
+    border-radius: 25px;
+    background-color: #78e08f;
+    padding: 10px;
+    position: relative;
+    max-width: 80%; /* Prevent messages from being too wide */
+    word-wrap: break-word; /* Break long words */
+}
+
+.msg_time { /* Timestamp for incoming messages */
+    position: absolute;
+    left: 0;
+    bottom: -15px;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 10px;
+}
+
+.msg_time_send { /* Timestamp for outgoing messages */
+    position: absolute;
+    right: 0;
+    bottom: -15px;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 10px;
+}
+
+.type_msg { /* Style for the message input textarea */
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    border: 0 !important;
+    color: white !important;
+    height: 60px !important;
+    overflow-y: auto;
+}
+
+.type_msg:focus {
+    box-shadow: none !important;
+    outline: 0px !important;
+}
+
+/* Attach button styles removed as the button is commented out in HTML */
+/*
+.attach_btn {
+    border-radius: 15px 0 0 15px !important;
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    border: 0 !important;
+    color: white !important;
+    cursor: pointer;
+}
+*/
+
+.send_btn { /* Style for the send button */
+    border-radius: 0 15px 15px 0 !important;
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    border: 0 !important;
+    color: white !important;
+    cursor: pointer;
+}
+
+/* Additional adjustments for the chat window structure */
+#chat-window .card {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Make card fill the window height */
+}
+
+#chat-window .card-body {
+    flex-grow: 1; /* Allow body to grow */
+    overflow-y: auto; /* Make body scrollable */
+}
+
+/* Optional: Hide the default scrollbar and use mCustomScrollbar */
+#chat-window .card-body.msg_card_body::-webkit-scrollbar {
+    display: none;
+}
+#chat-window .card-body.msg_card_body {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+    #chat-window {
+        width: 90%; /* Make window wider on small screens */
+        right: 5%;
+        bottom: 80px;
+    }
+}

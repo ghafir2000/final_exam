@@ -1,0 +1,121 @@
+body {
+    padding-top: 90px; /* Adjust if navbar height changes */
+}
+.navbar-nav {
+    padding-left: 0;
+    list-style: none ;
+}
+.navbar-nav > .nav-item, .navbar-nav > li {
+    list-style-type: none ;
+}
+/* ... other existing styles from your original file ... */
+.main-navbar.scrolled { box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+.main-navbar.navbar-hidden { transform: translateY(-100%); transition: transform 0.3s ease-in-out; }
+.main-navbar { transition: transform 0.3s ease-in-out; }
+.navbar-nav .nav-link img { vertical-align: middle; margin-right: 0.25rem; }
+
+/* --- Sidebar Styles (Remains the same) --- */
+    .profile-sidebar {
+    position: fixed; top: 0; right: -300px; width: 300px; height: 100%;
+    background-color: #b0e4b3; box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+    transition: right 0.3s ease; z-index: 1050; display: flex; flex-direction: column;
+}
+.profile-sidebar.show { right: 0; }
+.sidebar-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.5); z-index: 1040; display: none;
+}
+.sidebar-overlay.show { display: block; }
+.profile-sidebar-header {
+    display: flex; align-items: center; padding: 15px;
+    border-bottom: 1px solid #eee; background-color: #f8f9fa;
+}
+.profile-sidebar-header img { margin-right: 10px; }
+.sidebar-username { flex-grow: 1; font-weight: bold; color: rgb(0, 0, 0); }
+.sidebar-username:hover { text-decoration: none; }
+.close-sidebar-btn {
+    background: none; border: none; font-size: 1.5rem;
+    cursor: pointer; padding: 0; color: #6c757d;
+}
+.close-sidebar-btn:hover { color: #dc3545; }
+.profile-sidebar-content {    
+    background-color: #b0e4b3;
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto; }
+.sidebar-link {
+    background-color: #b0e4b3;
+    display: block; padding: 10px 0; color: #212529;
+}
+.btn:hover { transform: scale(1.05); }
+.sidebar-link:hover {  color: #446d95; }
+.sidebar-link i { width: 20px; text-align: center; margin-right: 8px; }
+.sidebar-divider { margin: 15px 0; border-top: 1px solid #eee; }
+.sidebar-heading {
+    font-size: 0.85em; text-transform: uppercase;
+    color: #6c757d; margin-bottom: 10px;
+}
+.profile-sidebar-footer {
+    padding: 15px; border-top: 1px solid #eee; background-color: #f8f9fa;
+}
+.sidebar-setting-item {
+    display: flex; justify-content: space-between;
+    align-items: center; margin-bottom: 10px;
+}
+.sidebar-setting-item label, .sidebar-setting-item span { margin-bottom: 0; }
+.sidebar-setting-item i { margin-right: 5px; }
+.logout-link { background-color: #f8f9fa; color: #dc3545 !important; }
+.logout-link:hover { background-color: #f8d7da !important; }
+.btn-custom {
+    height: 30px;
+    margin-right: 5px;
+    margin-top: 15px;
+}
+.btn-custom-2 {
+    height: 30px;
+    margin-right: 5px;
+}
+/* Dark Mode Styles (Remains the same) */
+body.dark-mode { background-color: #121212; color: #e0e0e0; }
+body.dark-mode .profile-sidebar-content {    
+    background-color: #1b223a !important;
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto; }
+body.dark-mode .type_msg_text { color: #000000; }
+body.dark-mode .admin_text { color: #000000; }
+body.dark-mode .sidebar-username { flex-grow: 1; font-weight: bold; color: rgb(255, 255, 255); }
+body.dark-mode .logout-link { background-color: #2c2c2c !important; color: #dc3545 !important; }
+body.dark-mode .btn-link { color: #7a008a !important; }
+body.dark-mode .btn-link:hover { color: #5d0069 !important; }
+body.dark-mode .logout-link:hover { background-color: #322a2a !important; }
+body.dark-mode .main-navbar { background-color: #1b223a !important; color: #e0e0e0; }
+body.dark-mode .main-navbar .nav-link { color: #e0e0e0 !important; }
+body.dark-mode .main-navbar .navbar-toggler-icon { filter: invert(1); }
+body.dark-mode .profile-sidebar { background-color: #1b223a; color: #e0e0e0; }
+body.dark-mode .profile-sidebar-header,
+body.dark-mode .profile-sidebar-footer { background-color: #2c2c2c; border-color: #3a3a3a; }
+body.dark-mode .sidebar-link { background-color: #1b223a; color: #e0e0e0; }
+body.dark-mode .sidebar-link:hover { background-color: #1b223a; color: #bb86fc; }
+body.dark-mode .sidebar-heading { color: #b0b0b0; }
+body.dark-mode .sidebar-divider { border-color: #3a3a3a; }
+body.dark-mode .close-sidebar-btn { color: #b0b0b0; }
+body.dark-mode .close-sidebar-btn:hover { color: #cf6679; }
+body.dark-mode .sidebar-setting-item label,
+body.dark-mode .sidebar-setting-item span { color: #e0e0e0; }
+body.dark-mode .form-select { background-color: #2c2c2c; color: #e0e0e0; border-color: #3a3a3a; }
+body.dark-mode .form-select option { background-color: #2c2c2c; color: #e0e0e0; }
+body.dark-mode .card-body { background-color: #525151; color: #e0e0e0; }
+body.dark-mode .text-muted { color: #faf7f7 !important; }
+body.dark-mode .text-dark { color: #ffffff !important; }
+body.dark-mode .text-primary { color: #e0e0e0 !important; }
+body.dark-mode .text-black { color: #00000000 !important; }
+body.dark-mode .card-header { background-color: #fdfcfc; color: #fffdfd; }
+body.dark-mode td { color: #e0e0e0 !important; }
+body.dark-mode h5 { color: #000000 !important; }
+body.dark-mode h6 { color: #000000 !important; }
+body.dark-mode h7 { color: #000000 !important; }
+body.dark-mode small { color: #000000 !important; }
+body.dark-mode .btn:hover { transform: scale(1.05); }
+
+body.dark-mode .text-notification { color: #000000 !important; }

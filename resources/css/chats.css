@@ -1,0 +1,254 @@
+body {
+    margin-top: 20px;
+    background: #f0f2f5; /* Lighter background for overall page */
+}
+
+/* ========================================================================
+ * MESSAGES
+ * ======================================================================== */
+.message-container { /* Renamed from .container for specificity */
+    /* You can add specific container styles if needed, or rely on Bootstrap's .container */
+}
+
+.message-wrapper {
+    position: relative;
+    padding: 0px;
+    background-color: #ffffff; /* White background for the chat wrapper */
+    margin: 0px;
+    border-radius: 8px; /* Added rounded corners to the main wrapper */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Softer shadow */
+}
+
+.message-wrapper .message-sideleft {
+    vertical-align: top !important;
+    border-right: 1px solid #e0e0e0; /* Separator line */
+}
+
+.message-wrapper .message-sideleft[class*="col-"] {
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.message-wrapper .message-sideright {
+    background-color: #f8f9fa; /* Slightly off-white for message area */
+}
+
+.message-wrapper .message-sideright[class*="col-"] {
+    padding: 20px; /* Reduced padding slightly */
+}
+
+.message-wrapper .message-sideright .panel {
+    border-top: 1px dotted #d1d1d1;
+    padding-top: 15px;
+}
+
+.message-wrapper .message-sideright .panel:first-child {
+    border-top: none;
+    padding-top: 0px;
+}
+
+.message-wrapper .message-sideright .panel .panel-heading {
+    border-bottom: none;
+    padding-bottom: 10px; /* Added some padding */
+}
+
+.message-wrapper .panel {
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+.message-wrapper .panel .panel-heading,
+.message-wrapper .panel .panel-body {
+    background-color: transparent !important;
+}
+
+.message-wrapper .media .media-body {
+    font-weight: 300;
+}
+
+.message-wrapper .media .media-heading {
+    margin-bottom: 0px;
+    font-weight: 500; /* Slightly bolder name */
+    color: #333;
+}
+
+.message-wrapper .media small {
+    color: #777777; /* Darker gray for timestamp */
+    font-weight: 400;
+}
+
+/* Panel Heading on Left Side */
+.message-sideleft .panel-heading {
+    background-color: #4CAF50; /* Primary Green */
+    color: white;
+    padding: 10px 15px;
+}
+.message-sideleft .panel-heading .panel-title {
+    color: white;
+    font-size: 1.2em;
+}
+.message-sideleft .panel-heading .btn-success {
+    background-color: #FFC107; /* Yellow for button */
+    border-color: #FFC107;
+    color: #212529; /* Dark text for yellow button */
+}
+.message-sideleft .panel-heading .btn-success:hover {
+    background-color: #e0a800;
+    border-color: #e0a800;
+}
+.message-sideleft .panel-heading .dropdown-menu {
+    border-color: #4CAF50;
+}
+.message-sideleft .panel-heading .dropdown-menu > li > a:hover {
+    background-color: #87CEEB; /* Light Blue for hover */
+    color: white;
+}
+
+
+/* Conversation List Items */
+.list-message {
+    /* No specific styles needed here if using list-group defaults */
+}
+.list-message .list-group-item {
+    padding: 12px 15px;
+    color: #555 !important;
+    border-right: 3px solid transparent !important; /* Default: no right border color */
+    border-bottom: 1px solid #e7e7e7 !important;
+    border-left: none;
+    border-top: none;
+}
+.list-message .list-group-item:hover {
+    background-color: #f5f5f5; /* Slight hover effect */
+}
+
+.list-message .list-group-item.active {
+    background-color: #87CEEB; /* Light Blue for active item */
+    border-right-color: #4CAF50 !important; /* Primary Green for active indicator */
+    color: #fff !important;
+}
+
+.list-message .list-group-item.active .list-group-item-heading,
+.list-message .list-group-item.active p,
+.list-message .list-group-item.active small {
+    color: #fff !important; /* White text for active item */
+}
+
+.list-message .list-group-item.active:hover,
+.list-message .list-group-item.active:focus,
+.list-message .list-group-item.active:active {
+    background-color: #76c3e0; /* Darker Light Blue on hover/focus */
+}
+
+.list-message .list-group-item small {
+    font-size: 11px;
+    color: #888;
+}
+
+.list-message .list-group-item .list-group-item-heading {
+    color: #333 !important; /* Darker text for name */
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.list-message .list-group-item .list-group-item-text {
+    margin-bottom: 8px;
+    font-size: 0.9em;
+    color: #666;
+}
+.list-message .list-group-item .list-group-item-text strong {
+    color: #444;
+}
+
+
+.list-message .list-group-item:last-child {
+    border-radius: 0px;
+    border-bottom: none !important; /* Remove bottom border for the last item in list */
+}
+
+.avatar {
+    width: 45px; /* Slightly smaller avatar */
+    height: 45px;
+    border-radius: 50%; /* Ensure it's always circle */
+    border: 2px solid #fff; /* White border for avatar */
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+
+/* Labels for status */
+.label {
+    padding: .3em .6em .3em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
+}
+.label-success {
+    background-color: #4CAF50; /* Primary Green */
+}
+.label-default, .label-open { /* Added .label-open */
+    background-color: #FFC107; /* Yellow for open/default */
+    color: #212529; /* Dark text for yellow label */
+}
+.rounded {
+    border-radius: 50px !important; /* Utility for rounded elements */
+}
+.circle {
+    border-radius: 50% !important; /* Utility for circle elements */
+}
+
+/* Message input area (example) */
+.message-input-area {
+    padding: 15px;
+    border-top: 1px solid #e0e0e0;
+    background-color: #f8f9fa;
+}
+.message-input-area textarea {
+    resize: none;
+}
+.message-input-area .btn-send {
+    background-color: #4CAF50; /* Primary Green */
+    color: white;
+}
+.message-input-area .btn-send:hover {
+    background-color: #45a049;
+}
+
+
+/* General utility */
+.no-padding {
+    padding: 0 !important;
+}
+.no-margin {
+    margin: 0 !important;
+}
+.mb-20 { /* From original html, kept for consistency if used elsewhere */
+    margin-bottom: 20px !important;
+}
+.pull-right {
+    float: right !important;
+}
+.pull-left {
+    float: left !important;
+}
+.clearfix::after {
+    display: block;
+    clear: both;
+    content: "";
+}
+
+/* Font Awesome (ensure you have it linked) */
+/* @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"); */
+
+/* Bootstrap specific overrides if needed. Example: */
+.panel-heading .dropdown-menu {
+    margin-top: 5px; /* Adjust dropdown position */
+}
+.btn-sm { /* Ensure btn-sm is defined if not using full Bootstrap */
+    padding: .25rem .5rem;
+    font-size: .875rem;
+    line-height: 1.5;
+    border-radius: .2rem;
+}

@@ -1,0 +1,158 @@
+/* public/css/custom-navbar.css (or in <style> tag) */
+
+/* --- Main Navbar Styling (with ~20% shrink applied) --- */
+.main-navbar {
+    /* background-color: #28a745 !important; */
+    /* background-image: linear-gradient(to bottom right, #28a745, #218838); */
+    padding-top: 0.5rem;    /* Original: 0.8rem * 0.8 = 0.64rem -> rounded to 0.5rem or 0.6rem */
+    padding-bottom: 0.5rem; /* Original: 0.8rem * 0.8 = 0.64rem -> rounded to 0.5rem or 0.6rem */
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Style for when navbar is scrolled (with ~20% shrink applied) */
+.main-navbar.scrolled {
+    padding-top: 0.25rem;   /* Original: 0.4rem * 0.8 = 0.32rem -> rounded to 0.25rem or 0.3rem */
+    padding-bottom: 0.25rem; /* Original: 0.4rem * 0.8 = 0.32rem -> rounded to 0.25rem or 0.3rem */
+    background-color: #218838 !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Style for when navbar is hidden (on scroll down) */
+.main-navbar.navbar-hidden {
+    transform: translateY(-100%);
+}
+
+/* Adjust Brand Logo Size - Apply shrink here */
+.main-navbar .navbar-brand img {
+    transition: transform 0.3s ease-in-out;
+    /* The HTML width/height="50" will be the base */
+    /* To shrink it by 20% always, you'd change the HTML width/height to 40 */
+    /* Or, if you want CSS to control it: */
+    width: 40px;  /* 50px * 0.8 = 40px */
+    height: 40px; /* 50px * 0.8 = 40px */
+}
+
+.main-navbar.scrolled .navbar-brand img {
+    /* Original: transform: scale(0.85); */
+    /* This scale is relative to its new base size (40px if set above) */
+    /* If you want it to shrink further from the already shrunk size: */
+    transform: scale(0.85); /* This will make it 40px * 0.85 = 34px */
+    /* If you want the SCALLED size to be 85% of the ORIGINAL 50px (i.e. 42.5px),
+       and the non-scrolled is 40px, this logic gets tricky.
+       It's often easier to set a fixed smaller size for non-scrolled and
+       then a fixed even smaller size (or no further transform) for scrolled.
+       Let's assume for now it scales relative to its new 40px size.
+    */
+}
+
+.main-navbar .nav-link {
+    font-size: 0.88rem; /* Original: 1.1rem * 0.8 = 0.88rem */
+    color: #f0f0f0;
+    margin-left: 0.4rem;  /* Original: 0.5rem * 0.8 = 0.4rem */
+    margin-right: 0.4rem; /* Original: 0.5rem * 0.8 = 0.4rem */
+    padding: 0.4rem 0.8rem; /* Original: 0.5rem 1rem -> 0.4rem 0.8rem */
+    border-radius: 4px; /* Original: 5px * 0.8 = 4px */
+    transition: all 0.3s ease;
+    position: relative;
+    font-weight: 500; /* Keep or adjust as needed */
+}
+
+/* Adjust inline images in nav-links:
+   THIS IS BEST DONE BY CHANGING THE HTML width/height attributes.
+   E.g., <img src="..." width="25" ...> becomes <img src="..." width="20" ...>
+*/
+.main-navbar .nav-link img {
+    margin-right: 6px; /* Original: 8px * 0.8 = 6.4px -> rounded to 6px */
+    transition: transform 0.3s ease;
+    /* The width/height from HTML will be used. If you need to force with CSS:
+       e.g., for a home_logo.jpg that was 25px:
+       selector-for-home-logo-img { width: 20px; height: 20px; }
+    */
+}
+
+.main-navbar .nav-link:hover img,
+.main-navbar .nav-link:focus img {
+    /* The scale factor might need adjustment if base image sizes changed significantly */
+    transform: scale(1.1); /* Keep or adjust this hover effect */
+}
+
+.main-navbar .nav-link:hover,
+.main-navbar .nav-link:focus {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Active link styling */
+.main-navbar .nav-link.active {
+    color: #f8f9fa;
+    font-weight: bold;
+}
+.main-navbar .nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; /* Adjust if padding changed significantly */
+    left: 15%;
+    width: 70%;
+    height: 2px;  /* Original: 3px * 0.8 = 2.4px -> rounded to 2px */
+    background-color: #ffc107;
+    border-radius: 1px; /* Original: 2px * 0.8 = 1.6px -> rounded to 1px or 2px */
+}
+
+/* Login Button (assuming .btn-login is actually .btn .btn-sm .btn-outline-light from HTML) */
+/* If you have a custom .btn-login class, apply these: */
+.main-navbar .btn-login, /* Or more specifically: */
+.main-navbar .btn.btn-sm.btn-outline-light { /* Target the actual Bootstrap button */
+    font-size: 0.88rem;   /* Original: 1.1rem * 0.8 = 0.88rem (if .btn-login has 1.1rem)
+                             If it's a Bootstrap .btn-sm, its base font-size is smaller.
+                             Bootstrap .btn-sm is font-size: .875rem;
+                             So, 0.875rem * 0.8 = 0.7rem */
+    /* Let's assume your .btn-login class was effective and had 1.1rem */
+    padding: 0.3rem 0.8rem; /* Original: 0.4rem 1rem -> 0.32rem 0.8rem */
+    /* border: 1px solid #f0f0f0; /* This will be handled by .btn-outline-light */
+    transition: all 0.3s ease;
+}
+/* Hover for Bootstrap button will be handled by Bootstrap's .btn-outline-light:hover */
+/* If .btn-login is custom and overrides Bootstrap completely:
+.main-navbar .btn-login:hover {
+    color: #1e7e34;
+    background-color: #f0f0f0;
+    border-color: #f0f0f0;
+}
+*/
+
+/* User Avatar in dropdown toggle (from previous general shrink example) */
+.main-navbar #navbarUserDropdown img.rounded-circle {
+    width: 24px;   /* (Assuming original was 30px) 30px * 0.8 = 24px */
+    height: 24px;
+}
+
+/* Notification Badge (from previous general shrink example) */
+.main-navbar #notification-count {
+    font-size: 0.55em; /* (Assuming original 0.65em from other example) */
+    padding: 0.15em 0.35em;
+    top: 1px;
+    right: 1px;
+}
+
+
+/* Adjust toggler icon color for better visibility on dark background */
+.navbar-light .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28240, 240, 240, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    /* If the icon itself needs to be smaller, you might need to adjust width/height on .navbar-toggler-icon */
+    /* Bootstrap 4 default: width: 1.5em, height: 1.5em */
+    /* To shrink: width: 1.2em; height: 1.2em; (1.5 * 0.8 = 1.2) */
+}
+.navbar-light .navbar-toggler {
+    border-color: rgba(240, 240, 240, 0.3);
+    /* Bootstrap 4 default: padding: .25rem .75rem; font-size: 1.25rem; */
+    /* To shrink: */
+    padding: 0.2rem 0.6rem;    /* .25 * 0.8 = 0.2, .75 * 0.8 = 0.6 */
+    font-size: 1rem;           /* 1.25 * 0.8 = 1 */
+}
+
+/* Add this if the toggler icon looks too big after font-size change on .navbar-toggler */
+.main-navbar .navbar-toggler-icon {
+    width: 1.2em;
+    height: 1.2em;
+}
