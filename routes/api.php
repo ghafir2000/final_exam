@@ -26,7 +26,7 @@ Route::get('/test', function () {
 
 Route::post('/login',[UserController::class , 'login']);
 
-Route::middleware('auth:sanctum')->group( function () {
+Route::middleware('auth')->group( function () {
     Route::get('/notifications/unread-count-and-latest',[NotificationController::class , 'index']);
     Route::post('/logout',[UserController::class , 'logout']);
     

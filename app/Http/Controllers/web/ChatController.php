@@ -185,7 +185,9 @@ class ChatController extends Controller
         Log::info('openAIChat: prompt : ' . $prompt);
         $authenticatedUser = $request->user(); // This is App\Models\User
         $ai = AI::firstOrCreate(
-            ['name' => 'Dr.Pet-er']
+            ['name' => 'Dr.Pet-er',
+            'model' => config('services.gemini.model')
+            ]
         );
 
         if ($ai && $authenticatedUser) {
