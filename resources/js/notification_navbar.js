@@ -26,8 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
         try {
-            const response = await fetch('/api/notifications/unread-count-and-latest', {
-                method: 'GET',
+            const response = await fetch(`${window.APP_URL}/api/notifications/unread-count-and-latest`, {                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
                     'X-Requested-With': 'XMLHttpRequest',

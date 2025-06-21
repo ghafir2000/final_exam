@@ -274,7 +274,7 @@ $(document).ready(function() {
          messageInput.prop('disabled', true).attr('placeholder', 'Loading...');
 
         $.ajax({
-            url: `/chat/ai/open`,
+            url: `${window.APP_URL}/chat/ai/open`, // <-- This is the corrected line
             method: 'GET',
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
             success: function(response) {
