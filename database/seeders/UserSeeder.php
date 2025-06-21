@@ -17,8 +17,8 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         // Seed customers
-        // User::factory()->count(20)->ensureUserable(Customer::class)->create();
-        User::factory()->count(20)->ensureUserable(Veterinarian::class)->create();
-        User::factory()->count(20)->ensureUserable(Partner::class)->create();
+        User::factory()->count(20)->ensureUserable(Customer::class)->create();
+        // User::factory()->count(20)->ensureUserable(Veterinarian::class)->create();
+        // User::factory()->count(20)->ensureUserable(Partner::class)->create();
     }
 }

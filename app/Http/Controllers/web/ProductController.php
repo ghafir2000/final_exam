@@ -48,7 +48,7 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('web.auth.Products.create',compact('categories'));
+        return view('web.auth.products.create',compact('categories'));
     }
 
     /**
