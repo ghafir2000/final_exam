@@ -42,7 +42,7 @@ class ProductController extends Controller
         $data = $request->only(['search','category_id', 'wishable','productable_id', 'productable_type','price', 'price_range']); // Extract filter parameters
         $Products = $this->ProductService->all($data,true,['productable']);
         // dd($Products);
-        return view('web.auth.Products.index', compact('Products'));
+        return view('web.auth.products.index', compact('Products'));
     }
 
     public function create()
