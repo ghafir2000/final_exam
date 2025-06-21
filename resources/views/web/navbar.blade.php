@@ -3,7 +3,7 @@
     <div class="container-fluid">
         {{-- Left-aligned items --}}
         <a class="navbar-brand" href="{{ route('home') }}">
-            <img src="{{ asset('logos/Dr.Pet_logo_transperent.jpg') }}" width="50" height="50" alt="{{ __('Dr.Pet logo') }}" class="d-inline-block align-top">
+            <img src="{{ asset('logos/Dr.pet_logo_transperent.jpg') }}" width="50" height="50" alt="{{ __('Dr.Pet logo') }}" class="d-inline-block align-top">
         </a>
 
         {{-- Navbar Toggler Button remains here for mobile --}}
