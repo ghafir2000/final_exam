@@ -163,6 +163,34 @@ Route::get('/fix', function () {
 })->name('fix.permissions.dangerously');
 
 
+Route::get('/test-pusher', function () {
+    Log::info('--- PUSHER TEST: Route has been hit. ---');
+    try {
+        Log::info('--- PUSHER TEST: Attempting to create Pusher instance... ---');
+
+        $pusher = new \Pusher\Pusher(
+            config('broadcasting.connections.pusher.key'),
+            config('broadcasting.connections.pusher.secret'),
+            config('broadcasting.connections.pusher.app_id'),
+            config('broadcasting.connections.pusher.options', [])
+        );
+
+        Log::info('--- PUSHER TEST: Pusher instance CREATED SUCCESSFULLY. ---');
+
+        // Optional: Try to trigger something
+        Log::info('--- PUSHER TEST: Attempting to trigger test event... ---');
+        $pusher->trigger('test-channel', 'test-event', ['message' => 'hello world']);
+        Log::info('--- PUSHER TEST: Trigger command EXECUTED without crashing. ---');
+
+        return "Pusher test complete. Check your laravel.log file.";
+
+    } catch (\Throwable $e) {
+        Log::error('--- PUSHER TEST: A CATCHABLE EXCEPTION OCCURRED ---');
+        Log::error($e->getMessage());
+        Log::error('In file: ' . $e->getFile() . ' on line ' . $e->getLine());
+        return "Pusher test FAILED. Check your laravel.log file.";
+    }
+});
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
