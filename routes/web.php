@@ -47,7 +47,7 @@ use App\Http\Controllers\web\VeterinarianController;
 
 
 
-Route::get('/clear', function ($secret_token) {
+Route::get('/clear', function () {
 
 
     $output = [];
