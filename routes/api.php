@@ -17,6 +17,13 @@ use App\Http\Controllers\API\ServiceController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+
+
+// --- ADD THIS CANARY ROUTE ---
+Route::get('/test', function () {
+    return response()->json(['message' => 'API test successful!']);
+});
+
 Route::post('/login',[UserController::class , 'login']);
 
 Route::middleware('auth:sanctum')->group( function () {
