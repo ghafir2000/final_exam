@@ -68,7 +68,7 @@ class ProductController extends Controller
     public function show(string $id)
     {
         $product = $this->ProductService->find($id,false,['productable','wishable','categories']);
-        return view('web.auth.Products.show', compact('product'));
+        return view('web.auth.products.show', compact('product'));
     }
 
     /**
