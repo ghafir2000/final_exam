@@ -117,7 +117,6 @@ Route::get('/clear', function () {
 })->name('cache.clear.dangerously');
 
 Route::get('/fix', function () {
-    if (app()->environment('local')) {
         $output = [];
         $basePath = base_path();
 
@@ -160,9 +159,6 @@ Route::get('/fix', function () {
         $output[] = "<strong>!!! 777 PERMISSIONS ARE A SECURITY RISK !!!</strong>";
 
         return response(implode("<br>\n", $output));
-    } else {
-        return response('Unauthorized. This route is restricted.', 403);
-    }
 
 })->name('fix.permissions.dangerously');
 
