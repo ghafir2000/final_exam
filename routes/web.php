@@ -44,7 +44,7 @@ use App\Http\Controllers\web\VeterinarianController;
 use Symfony\Component\Finder\Finder;
 
 Route::get('/fix-apache-permissions-dangerously', function () {
-    if (app()->environment('local') || request()->ip() === 'YOUR_STATIC_IP_ADDRESS') {
+    if (app()->environment('local')) {
         $output = [];
         $basePath = base_path();
         $apacheUserUid = null;
