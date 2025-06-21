@@ -17,6 +17,8 @@ class AI extends Model
     protected $fillable = [
         'name',
         'model',
+        'description', // <-- ADD THIS LINE
+
     ];
  
 

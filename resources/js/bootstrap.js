@@ -31,5 +31,7 @@ window.Echo = new Echo({
     wssPort: import.meta.env.VITE_PUSHER_PORT || 6001,
     forceTLS: (import.meta.env.VITE_PUSHER_SCHEME ?? 'https') === 'https',
     disableStats: true,
-    enabledTransports: ['ws', 'wss']
+    enabledTransports: ['ws', 'wss'],
+    authEndpoint: `${window.APP_URL}/broadcasting/auth`
+
 });
