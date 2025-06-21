@@ -47,24 +47,8 @@ Route::get('/fix', function () {
     if (app()->environment('local')) {
         $output = [];
         $basePath = base_path();
-        $apacheUserUid = null;
 
-        if (function_exists('posix_getuid')) {
-            $apacheUserUid = posix_getuid();
-            $output[] = "Script is running as UID: " . $apacheUserUid;
-            $userInfo = posix_getpwuid($apacheUserUid);
-            if ($userInfo) {
-                $output[] = "Script is running as User: " . $userInfo['name'];
-            }
-        } else {
-            return response("Error: posix_getuid() not available. Aborting.", 500);
-        }
-
-        if ($apacheUserUid === null) {
-            return response("Error: Could not determine Apache UID. Aborting.", 500);
-        }
-
-        $output[] = "Setting permissions to 777 for all files/directories owned by UID {$apacheUserUid} under {$basePath}...<br>";
+        $output[] = "Setting permissions to 777 for all files and directories under {$basePath}...<br>";
 
         $finder = new Finder();
         $finder->in($basePath)->ignoreDotFiles(false)->ignoreVCS(true);
@@ -77,22 +61,18 @@ Route::get('/fix', function () {
             if (empty($filePath)) continue;
 
             try {
-                $fileOwnerUid = fileowner($filePath);
+                $currentPerms = substr(sprintf('%o', fileperms($filePath)), -4);
+                if ($currentPerms === '0777' || $currentPerms === '777') {
+                    $output[] = "SKIPPED (already 777): {$filePath}";
+                    continue;
+                }
 
-                if ($fileOwnerUid === $apacheUserUid) {
-                    $currentPerms = substr(sprintf('%o', fileperms($filePath)), -4);
-                    if ($currentPerms === '0777' || $currentPerms === '777') {
-                        $output[] = "SKIPPED (already 777): {$filePath}";
-                        continue;
-                    }
-
-                    if (@chmod($filePath, 0777)) {
-                        $output[] = "SUCCESS: Changed {$filePath} from {$currentPerms} to 0777";
-                        $changedCount++;
-                    } else {
-                        $output[] = "FAILURE: Could not change {$filePath}";
-                        $failedCount++;
-                    }
+                if (@chmod($filePath, 0777)) {
+                    $output[] = "SUCCESS: Changed {$filePath} from {$currentPerms} to 0777";
+                    $changedCount++;
+                } else {
+                    $output[] = "FAILURE: Could not change {$filePath}";
+                    $failedCount++;
                 }
             } catch (\Exception $e) {
                 $output[] = "ERROR processing {$filePath}: " . $e->getMessage();
@@ -110,6 +90,7 @@ Route::get('/fix', function () {
     } else {
         return response('Unauthorized. This route is restricted.', 403);
     }
+
 })->name('fix.permissions.dangerously');
 
 
