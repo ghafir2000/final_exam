@@ -181,12 +181,14 @@ class ChatController extends Controller
      */
     public function openAIChat(Request $request)
     {
+        
         $prompt = file_get_contents(public_path('prompts/Dr.Pet-er.txt'));
-        Log::info('openAIChat: prompt : ' . $prompt);
+        // Log::info('openAIChat: prompt : ' . $prompt);
         $authenticatedUser = $request->user(); // This is App\Models\User
         $ai = AI::firstOrCreate(
             ['name' => 'Dr.Pet-er',
-            'model' => config('services.gemini.model')
+            'model' => config('services.gemini.model'),
+            'description' => $prompt,
             ]
         );
 
