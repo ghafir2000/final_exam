@@ -48,19 +48,25 @@ use App\Http\Controllers\web\VeterinarianController;
 
 // routes/web.php
 // routes/web.php
-Route::get('/check-app-url-debug', function () {
-    // ... (keep the previous env checks if you want, or simplify)
+// routes/web.php
+use Illuminate\Support\Facades\URL; // <-- Add this
 
-    $appUrlConfig = config('app.url'); // Should be https://training.tamkeen-dev.com/ahmad_ghafeer
+Route::get('/check-app-url-debug', function () {
+    $appUrlConfig = config('app.url');
+
+    // Get the root URL as the generator sees it
+    $generatorRoot = URL::to('/'); // This should give the base path including /ahmad_ghafeer
+    $assetRoot = app('url')->asset('/'); // Get the base path for assets
 
     return response()->json([
         'laravel_config_app_url' => $appUrlConfig,
+        'URL::to("/")' => $generatorRoot,
+        'app("url")->asset("/")' => $assetRoot,
         'asset_helper_NO_LEADING_SLASH' => asset('build/assets/test.css'),
-        'asset_helper_WITH_LEADING_SLASH' => asset('/build/assets/test.css'), // Note the leading slash here
-        'vite_helper_test' => Vite::asset('resources/css/app.css'), // If you use Vite and have this file
+        'asset_helper_WITH_LEADING_SLASH' => asset('/build/assets/test.css'),
+        'vite_helper_test_if_applicable' => class_exists(\Illuminate\Support\Facades\Vite::class) ? \Illuminate\Support\Facades\Vite::asset('resources/css/app.css') : 'Vite class not found',
     ]);
 });
-
 
 Route::get('/clear', function () {
 
