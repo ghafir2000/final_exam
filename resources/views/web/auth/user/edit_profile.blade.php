@@ -2,7 +2,9 @@
 
 <title>@lang('Dr.Pets - Edit Your Profile')</title>
 
-@section('content') {{-- Define the content section --}}
+@section('styles') {{-- Define the content section --}}
+
+
     <style>
         /* Removed .transparent-button styles as they aren't needed here */
         /* Removed the empty .profile-button ruleset as instructed */
@@ -30,6 +32,10 @@
         }
     </style>
 </head>
+
+@endsection
+
+@section('content') {{-- Define the content section --}}
 
 <body>
     {{-- The include('web.auth.navbar') likely renders the navbar here --}}
@@ -195,8 +201,4 @@
             </div>
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/js/all.min.js"
+@endsection
