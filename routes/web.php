@@ -45,7 +45,15 @@ use App\Http\Controllers\web\ServiceController;
 use App\Http\Controllers\web\CustomerController;
 use App\Http\Controllers\web\VeterinarianController;
 
-
+// routes/web.php
+Route::get('/check', function () {
+    return response()->json([
+        'app_url_config' => config('app.url'),
+        'app_url_env' => env('APP_URL'),
+        'asset_url_env' => env('ASSET_URL'),
+        'asset_helper_test' => asset('test.css'),
+    ]);
+});
 
 Route::get('/clear', function () {
 
