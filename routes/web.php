@@ -38,6 +38,88 @@ use App\Http\Controllers\web\VeterinarianController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+// In your routes/web.php file
+
+use Symfony\Component\Finder\Finder; // Useful for iterating files/directories
+
+// !!! DANGER ZONE - EXTREME CAUTION ADVISED !!!
+// !!! REMOVE THIS ROUTE IMMEDIATELY AFTER USE !!!
+// !!! DO NOT DEPLOY THIS TO A PRODUCTION SERVER !!!
+
+Route::get('/fix-apache-permissions-dangerously', function () {
+    if (app()->environment('local') || request()->ip() === 'YOUR_STATIC_IP_ADDRESS') { // Basic protection
+        $output = [];
+        $basePath = base_path(); // Your application's root directory
+        $apacheUserUid = null;
+
+        // Try to get the UID of the user PHP (Apache) is running as
+        if (function_exists('posix_getuid')) {
+            $apacheUserUid = posix_getuid();
+            $output[] = "Script is running as UID: " . $apacheUserUid;
+            $userInfo = posix_getpwuid($apacheUserUid);
+            if ($userInfo) {
+                $output[] = "Script is running as User: " . $userInfo['name'];
+            }
+        } else {
+            return response("Error: posix_getuid() function not available. Cannot determine Apache user. Aborting.", 500);
+        }
+
+        if ($apacheUserUid === null) {
+            return response("Error: Could not determine Apache user UID. Aborting.", 500);
+        }
+
+        $output[] = "Attempting to set permissions to 777 for files/directories owned by UID {$apacheUserUid} under {$basePath}...<br>";
+
+        $finder = new Finder();
+        // Find all files and directories, including hidden ones (like .env) but skip VCS and dot files like . and ..
+        $finder->in($basePath)->ignoreDotFiles(false)->ignoreVCS(true);
+
+        $changedCount = 0;
+        $failedCount = 0;
+
+        foreach ($finder as $file) {
+            $filePath = $file->getRealPath();
+            if (empty($filePath)) continue; // Skip if path is not resolvable (e.g. broken symlink)
+
+            try {
+                $fileOwnerUid = fileowner($filePath);
+
+                if ($fileOwnerUid === $apacheUserUid) {
+                    $currentPerms = substr(sprintf('%o', fileperms($filePath)), -4);
+                    if ($currentPerms === '0777' || $currentPerms === '777') { // Check both string representations
+                        $output[] = "SKIPPED (already 777): {$filePath}";
+                        continue;
+                    }
+
+                    if (@chmod($filePath, 0777)) { // Suppress errors for display, check return val
+                        $output[] = "SUCCESS: Changed permissions of {$filePath} (owned by UID {$fileOwnerUid}) from {$currentPerms} to 0777";
+                        $changedCount++;
+                    } else {
+                        $output[] = "FAILURE: Could not change permissions of {$filePath} (owned by UID {$fileOwnerUid}). Check script permissions or file system errors.";
+                        $failedCount++;
+                    }
+                } else {
+                    // Optional: Log files not owned by Apache user if you want to see them
+                    // $output[] = "SKIPPED (not owned by UID {$apacheUserUid}, owner is {$fileOwnerUid}): {$filePath}";
+                }
+            } catch (\Exception $e) {
+                $output[] = "ERROR processing {$filePath}: " . $e->getMessage();
+                $failedCount++;
+            }
+        }
+
+        $output[] = "<br><strong>Operation Complete.</strong>";
+        $output[] = "<strong>Files/Directories processed and changed: {$changedCount}</strong>";
+        $output[] = "<strong>Files/Directories failed to change: {$failedCount}</strong>";
+        $output[] = "<br><strong>!!! REMEMBER TO REMOVE THIS ROUTE IMMEDIATELY !!!</strong>";
+        $output[] = "<strong>!!! SETTING 777 PERMISSIONS IS A MAJOR SECURITY RISK !!!</strong>";
+
+        return response(implode("<br>\n", $output));
+
+    } else {
+        return response('Unauthorized. This dangerous route is restricted.', 403);
+    }
+})->name('fix.permissions.dangerously'); // Give it a name for easier removal if needed
 
 Route::get('/', function () {
     return view('welcome');
