@@ -183,15 +183,26 @@ class ChatController extends Controller
     {
         
         $prompt = file_get_contents(public_path('prompts/Dr.Pet-er.txt'));
-        // Log::info('openAIChat: prompt : ' . $prompt);
-        $authenticatedUser = $request->user(); // This is App\Models\User
+        Log::info('AI Chat: Prompt content loaded successfully.');
+
+        $authenticatedUser = $request->user();
+
+        // --- THIS IS THE CORRECTED CODE ---
         $ai = AI::firstOrCreate(
-            ['name' => 'Dr.Pet-er',
-            'model' => config('services.gemini.model'),
-            'description' => $prompt,
+            // --- Argument 1: The attributes to FIND the record by ---
+            [
+                'name' => 'Dr.Pet-er'
+            ],
+            // --- Argument 2: The attributes to use if CREATING a new record ---
+            [
+                'model'       => config('services.gemini.model', env('GEMINI_MODEL_NAME')), // Using config is best, env() is a fallback
+                'description' => $prompt
             ]
         );
 
+        Log::info('AI Chat: Successfully found or created AI record. ID: ' . $ai->id);
+
+        // ... rest of your controller logic
         if ($ai && $authenticatedUser) {
             Log::info('openAIChat: AI entity found: ' . $ai->id);
             Log::info('openAIChat: Authenticated User: ' . $authenticatedUser->id);
