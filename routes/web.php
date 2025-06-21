@@ -3,7 +3,10 @@
 use App\Models\Booking;
 use App\Models\Customer;
 use NunoMaduro\Collision\Provider;
+use Illuminate\Support\Facades\Log;
+use Symfony\Component\Finder\Finder;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\web\PetController;
 use App\Http\Controllers\web\BlogController;
 use App\Http\Controllers\web\CartController;
@@ -15,18 +18,15 @@ use App\Http\Controllers\web\WishController;
 use App\Http\Controllers\web\AdminController;
 use App\Http\Controllers\web\BreedController;
 use App\Http\Controllers\web\ImageController;
-use App\Http\Controllers\web\LocaleController;
 use App\Http\Controllers\web\OrderController;
 use App\Http\Controllers\web\AnimalController;
+use App\Http\Controllers\web\LocaleController;
 use App\Http\Controllers\web\RecordController;
 use App\Http\Controllers\web\BookingController;
 use App\Http\Controllers\web\CommentController;
 use App\Http\Controllers\web\PartnerController;
 use App\Http\Controllers\web\PaymentController;
 use App\Http\Controllers\web\ProductController;
-use App\Http\Controllers\web\ServiceController;
-use App\Http\Controllers\web\CustomerController;
-use App\Http\Controllers\web\VeterinarianController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,7 +41,59 @@ use App\Http\Controllers\web\VeterinarianController;
 // In your routes/web.php file
 
 
-use Symfony\Component\Finder\Finder;
+use App\Http\Controllers\web\ServiceController;
+use App\Http\Controllers\web\CustomerController;
+use App\Http\Controllers\web\VeterinarianController;
+
+
+
+Route::get('/clear', function ($secret_token) {
+
+
+    $output = [];
+    $errors = [];
+
+    try {
+        $output[] = "Attempting to clear caches...\n";
+
+        // Cache Facade (General Application Cache)
+        Artisan::call('cache:clear');
+        $output[] = "Cache Facade (php artisan cache:clear): " . Artisan::output();
+
+        // View Cache
+        Artisan::call('view:clear');
+        $output[] = "View Cache (php artisan view:clear): " . Artisan::output();
+
+        // Route Cache
+        Artisan::call('route:clear');
+        $output[] = "Route Cache (php artisan route:clear): " . Artisan::output();
+
+        // Configuration Cache
+        Artisan::call('config:clear');
+        $output[] = "Config Cache (php artisan config:clear): " . Artisan::output();
+
+        // Compiled Services and Packages (Optimize Clear)
+        Artisan::call('optimize:clear');
+        $output[] = "Optimize Clear (php artisan optimize:clear): " . Artisan::output();
+
+        // Event Cache (if you use event caching)
+        // Artisan::call('event:clear');
+        // $output[] = "Event Cache (php artisan event:clear): " . Artisan::output();
+
+        $output[] = "\nAll caches cleared successfully (or attempted).";
+        Log::info('Caches cleared successfully via web route by IP: ' . request()->ip());
+
+    } catch (\Exception $e) {
+        $errors[] = "An error occurred: " . $e->getMessage();
+        Log::error('Error clearing caches via web route: ' . $e->getMessage() . ' from IP: ' . request()->ip());
+        return response("Error clearing caches:\n" . implode("\n", $output) . "\n\nErrors:\n" . implode("\n", $errors), 500)
+            ->header('Content-Type', 'text/plain');
+    }
+
+    return response(implode("\n", $output))
+        ->header('Content-Type', 'text/plain');
+
+})->name('cache.clear.dangerously');
 
 Route::get('/fix', function () {
     if (app()->environment('local')) {
