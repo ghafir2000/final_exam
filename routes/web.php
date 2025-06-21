@@ -4,6 +4,7 @@ use App\Models\Booking;
 use App\Models\Customer;
 use NunoMaduro\Collision\Provider;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Vite;
 use Symfony\Component\Finder\Finder;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
@@ -26,7 +27,6 @@ use App\Http\Controllers\web\BookingController;
 use App\Http\Controllers\web\CommentController;
 use App\Http\Controllers\web\PartnerController;
 use App\Http\Controllers\web\PaymentController;
-use App\Http\Controllers\web\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,19 +41,26 @@ use App\Http\Controllers\web\ProductController;
 // In your routes/web.php file
 
 
+use App\Http\Controllers\web\ProductController;
 use App\Http\Controllers\web\ServiceController;
 use App\Http\Controllers\web\CustomerController;
 use App\Http\Controllers\web\VeterinarianController;
 
 // routes/web.php
-Route::get('/check', function () {
+// routes/web.php
+Route::get('/check-app-url-debug', function () {
+    // ... (keep the previous env checks if you want, or simplify)
+
+    $appUrlConfig = config('app.url'); // Should be https://training.tamkeen-dev.com/ahmad_ghafeer
+
     return response()->json([
-        'app_url_config' => config('app.url'),
-        'app_url_env' => env('APP_URL'),
-        'asset_url_env' => env('ASSET_URL'),
-        'asset_helper_test' => asset('test.css'),
+        'laravel_config_app_url' => $appUrlConfig,
+        'asset_helper_NO_LEADING_SLASH' => asset('build/assets/test.css'),
+        'asset_helper_WITH_LEADING_SLASH' => asset('/build/assets/test.css'), // Note the leading slash here
+        'vite_helper_test' => Vite::asset('resources/css/app.css'), // If you use Vite and have this file
     ]);
 });
+
 
 Route::get('/clear', function () {
 
