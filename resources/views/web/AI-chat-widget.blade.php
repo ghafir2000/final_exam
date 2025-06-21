@@ -59,7 +59,7 @@
 
     <input type="hidden" id="current-user-id" value="{{ Auth::id() }}">
     <input type="hidden" id="current-chat-id" value="">
-    <input type="hidden" id="current-user-img-url" value="{{asset(images/veterinarian_AI.jpg)}}">
+    <input type="hidden" id="current-user-img-url" value="{{asset('images/veterinarian_AI.jpg')}}">
 @endauth
 
 <!-- CSS for Styling and Animation -->
