@@ -19,7 +19,7 @@ $(document).ready(function() {
     const clearChatBtn = $('#clear-chat-btn');
 
     const currentUserId = $('#current-user-id').val();
-    const currentUserImgUrl = $('#current-user-img-url').val() || 'asset('/images/default_user_avatar.png')'; // Ensure fallback
+    const currentUserImgUrl = $('#current-user-img-url').val() || '/images/default_user_avatar.png'; // Ensure fallback
     console.log("Initial currentUserImgUrl:", currentUserImgUrl);
 
     let currentChatId = $('#current-chat-id').val();
