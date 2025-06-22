@@ -19,7 +19,7 @@ $(document).ready(function() {
     const clearChatBtn = $('#clear-chat-btn');
 
     const currentUserId = $('#current-user-id').val();
-    const currentUserImgUrl = $('#current-user-img-url').val() || '/images/default_user_avatar.png'; // Ensure fallback
+    const currentUserImgUrl = $('#current-user-img-url').val() || 'asset('/images/default_user_avatar.png')'; // Ensure fallback
     console.log("Initial currentUserImgUrl:", currentUserImgUrl);
 
     let currentChatId = $('#current-chat-id').val();
@@ -356,7 +356,7 @@ $(document).ready(function() {
 
         console.log('Initiating AJAX send...');
         $.ajax({
-            url: '/chat/message/send',
+            url: `${window.APP_URL}/chat/message/send`,
             method: 'POST',
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
             data: { chat_id: currentChatId, message: messageToSend },
@@ -400,7 +400,7 @@ $(document).ready(function() {
         clearChatBtn.prop('disabled', true).addClass('btn-secondary').removeClass('btn-danger'); // Disable button and change style
 
         $.ajax({
-            url: `/chat/${currentChatId}/clear`,
+            url: `${window.APP_URL}/chat/${currentChatId}/clear`,
             method: 'DELETE',
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
