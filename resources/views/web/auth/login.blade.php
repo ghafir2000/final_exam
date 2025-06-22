@@ -27,7 +27,7 @@
 {{-- <body> --}}
     <div style="margin-top: -40px;" class="text-center">
         {{-- Added position:relative and transition via CSS above for cleaner HTML --}}
-        <img class="rounded-circle mb-2" width="250px" src="{{asset('logos/Dr.pet_logo_transperent.jpg')}}" id="logo">
+        <img class="rounded-circle mb-2" width="250px" src="{{asset('logos/Future Features.jpg')}}" id="logo">
     </div>
 
     <div class="container">
