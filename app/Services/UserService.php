@@ -49,7 +49,7 @@ class UserService
             $userableData = Arr::only($data, $userableFields);
     
             if ($userableClass === \App\Models\Customer::class) {
-                $data['customer_code'] = (string) Str::uuid();
+                $userableData['customer_code'] = (string) Str::uuid();
             } 
             // Create Userable
             $userable = $userableClass::create($userableData);
