@@ -23,7 +23,8 @@ class DatabaseSeeder extends Seeder
             PermissionsSeeder::class,
             PermissionsSeeder2::class,
             BlogSeeder::class,
-            EmbeddingSeeder::class
+            EmbeddingSeeder::class,
+            AdminSeeder::class,
 
         ]);
     }

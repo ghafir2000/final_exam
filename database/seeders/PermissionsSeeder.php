@@ -28,19 +28,6 @@ class PermissionsSeeder extends Seeder
         $admin->givePermissionTo([$editUsers, $editMedia]);
         $editor->givePermissionTo($editMedia);
 
-        $user = \App\Models\User::factory()->create([
-            'name' => 'ahmad al ghafir',
-            'email' => 'ahmadghafeer@gmail.com',
-            'email_verified_at' => null,
-            'phone' => fake()->phoneNumber(),
-            'password' => Hash::make('password'),
-            'remember_token' => Str::random(10),
-            'country' => fake()->countryCode(),
-            'address' => fake()->address(),
-            'userable_id' => 1,
-            'userable_type' => 'App\Models\Admin',
-        ]);
-        $user->assignRole($admin);
             
         
     }
