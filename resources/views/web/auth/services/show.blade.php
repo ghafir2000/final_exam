@@ -40,7 +40,7 @@
                                 <button type="submit" class="btn btn-danger " onclick="return confirm('{{ __('Are you sure you want to delete this service?') }}')">{{ __('Delete') }}</button>
                             </form>
                             @endif
-                            @if(auth()->check() && auth()->user()->userable && $service->servicable_id !== auth()->user()->userable_id)
+                            @if(auth()->check() && auth()->user()->userable && $service->servicable_id !== auth()->user()->userable_id && $service->servicable_type === get_class(auth()->user()->userable))
                             <form action="{{ route('chat.store', ['chatable_id' => $service->servicable->userable->id, 'chatable_type' => get_class($service->servicable->userable)]) }}" method="POST">
                                 @csrf
                                 <button type="submit" class="btn btn-info me-2 ml-2">{{ __('Chat') }}</button>
