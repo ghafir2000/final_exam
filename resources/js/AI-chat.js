@@ -482,7 +482,7 @@ $(document).ready(function() {
 
                 messageCountEl.text('...');
                 chatPartnerNameEl.text('Chat Closed');
-                chatPartnerImgEl.attr('src', '/images/veterinarian_AI.jpg');
+                chatPartnerImgEl.attr('src', "/images/veterinarian_AI.jpg");
                 sendMessageBtn.off('click');
                 messageInput.prop('disabled', true).attr('placeholder', 'Chat closed.');
                 scrollToBottom(); // Ensure scrollbar updates correctly for closed state
