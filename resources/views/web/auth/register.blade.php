@@ -1,4 +1,5 @@
 @extends('web.layout')
+@extends('web.layout') 
 
 <title>{{ __('Dr.Pets - Register') }}</title>
 
@@ -43,24 +44,12 @@
 
                     <div class="mb-3">
                         <label for="password" class="form-label">{{ __('Password') }}</label>
-                        <div class="input-group">
-                            <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                name="password" id="password" required>
-                        </div>
                         <input type="password" class="form-control @error('password') is-invalid @enderror"
                             name="password" required>
                         @error('password')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
-
-                    <script>
-                        function togglePasswordVisibility() {
-                            const passwordField = document.getElementById('password');
-                            const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
-                            passwordField.setAttribute('type', type);
-                        }
-                    </script>
 
                     <div class="mb-3">
                         <label for="password_confirmation" class="form-label">{{ __('Confirm password') }}</label>
@@ -148,9 +137,13 @@
                     </div>
                 `;
             }
+
+
+
             // No additional fields for Customers, so nothing is appended when they are selected.
         });
     </script>
 </body>
 </html>
+
 
