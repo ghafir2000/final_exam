@@ -58,7 +58,7 @@
     END DEBUGGING OUTPUT -->
 
     <input type="hidden" id="current-user-id" value="{{ Auth::id() }}">
-    <input type="hidden" id="current-user-img-url" value="{{asset('images/veterinarian_AI.jpg')}}">
+    <input type="hidden" id="current-user-img-url" value="">
 @endauth
 
 <!-- CSS for Styling and Animation -->
