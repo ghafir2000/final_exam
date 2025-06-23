@@ -26,7 +26,7 @@ class ServiceSeeder extends Seeder
         // If no times were generated (e.g., if start >= end), provide a default empty JSON array
         $availableTimesJson = json_encode($generatedTimes);
         
-        $Services = Service::factory()->count(20)->state(fn (array $attributes) => [
+        $Services = Service::factory()->count(50)->state(fn (array $attributes) => [
             'available_times' => $availableTimesJson,
             'servicable_type' => fake()->randomElement(['App\\Models\\Partner', 'App\\Models\\Veterinarian']),
             'servicable_id' => function (array $attributes) {

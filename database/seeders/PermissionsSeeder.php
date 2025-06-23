@@ -25,10 +25,8 @@ class PermissionsSeeder extends Seeder
         $editMedia = Permission::findOrCreate('edit media');
 
         // Assign permissions to roles
-        $admin->givePermissionTo([$editUsers, $editMedia]);
-        $editor->givePermissionTo($editMedia);
-
-            
+        $admin->permissions()->sync([$editUsers->id, $editMedia->id]);
+        $editor->permissions()->sync([$editMedia->id]);
         
     }
 }

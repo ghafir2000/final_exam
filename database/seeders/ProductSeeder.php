@@ -18,7 +18,7 @@ class ProductSeeder extends Seeder
 
         // Product::truncate();
         
-        for ($i = 0; $i < 30; $i++) {
+        for ($i = 0; $i < 25; $i++) {
             Product::factory()
             ->count(mt_rand(1, 5))
             ->withCategories()
