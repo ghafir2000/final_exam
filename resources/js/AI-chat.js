@@ -19,7 +19,7 @@ $(document).ready(function() {
     const clearChatBtn = $('#clear-chat-btn');
 
     const currentUserId = $('#current-user-id').val();
-    const currentUserImgUrl = $('#current-user-img-url').val() || '/images/default_user_avatar.png'; // Ensure fallback
+    const currentUserImgUrl = $('#current-user-img-url').val(); // Ensure fallback
     console.log("Initial currentUserImgUrl:", currentUserImgUrl);
 
     let currentChatId = $('#current-chat-id').val();
@@ -169,7 +169,7 @@ $(document).ready(function() {
              messageBody.append('<p class="text-muted text-center p-3">Error loading chat.</p>');
              messageCountEl.text('...');
              chatPartnerNameEl.text('Chat Error');
-             chatPartnerImgEl.attr('src', '/images/veterinarian_AI.jpg');
+             chatPartnerImgEl.attr('src', 'asset(/images/veterinarian_AI.jpg)');
              sendMessageBtn.off('click');
              messageInput.prop('disabled', true).attr('placeholder', 'Error loading chat.');
              scrollToBottom();
