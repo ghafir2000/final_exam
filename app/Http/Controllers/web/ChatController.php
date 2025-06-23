@@ -235,7 +235,6 @@ class ChatController extends Controller
                         'user_id' => $authenticatedUser->id,
                         'chatable_id' => $ai->id,
                         'chatable_type' => get_class($ai),
-                        'status' => ChatEnums::OPENED,
                     ]
                 );
                 // Check if the model was just created in this request
