@@ -51,9 +51,6 @@
                         <label for="password" class="form-label">@lang('Password')</label>
                         <div class="input-group">
                             <input type="password" name="password" class="form-control" id="password" style="background-color: rgba(209, 239, 211, 0.0);">
-                            <button class="btn btn-outline-secondary" type="button" id="password-show-btn">
-                                <i class="fas fa-eye" aria-hidden="true"></i>
-                            </button>
                         </div>
                         @error('password')
                         <span class="text-danger">{{ $message }}</span>
