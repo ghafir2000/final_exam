@@ -85,12 +85,12 @@ $(document).ready(function() {
             senderNameForDisplay = "You";
             senderNameForAlt = messageUser.name || 'You';
         } else { // AI's message
-            determinedProfileImageUrl = messageUser.profile_picture || messageUser.image_url || "asset('images/veterinarian_AI.jpg')";
+            determinedProfileImageUrl = messageUser.profile_picture || messageUser.image_url || "images/veterinarian_AI.jpg";
             senderNameForDisplay = messageUser.name || 'AI';
             senderNameForAlt = messageUser.name || 'AI';
         }
         // Final fallback check
-        determinedProfileImageUrl = determinedProfileImageUrl || (isMyMessage ? 'asset(/images/default_user_avatar.png)' : "asset('images/veterinarian_AI.jpg')");
+        determinedProfileImageUrl = determinedProfileImageUrl || (isMyMessage ? '/images/default_user_avatar.png' : "images/veterinarian_AI.jpg");
 
         // Generate HTML
         const messageHtml = isMyMessage ?
