@@ -53,6 +53,9 @@
                         @error('password')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
+                        <button type="button" class="btn btn-outline-secondary" onclick="togglePasswordVisibility()">
+                                <i class="fas fa-eye" aria-hidden="true"></i>
+                        </button>
                     </div>
                     <button type="submit" class="btn btn-success">@lang('Login')</button>
                     <a href="{{ route('register') }}" class="btn btn-light border border-success">@lang('Register')</a>
