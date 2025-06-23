@@ -12,9 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <!-- ======================================================= -->
-    <!--   THIS IS THE ONLY CHANGE YOU NEED. ADD THIS SCRIPT.    -->
-    <!-- ======================================================= -->
+   
     <script>
         // This creates a global JavaScript variable that all your other JS files can use.
         // The `url('/')` helper in Laravel correctly generates the full base URL,

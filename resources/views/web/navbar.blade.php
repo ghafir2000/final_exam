@@ -233,7 +233,7 @@
          const languageSwitcher = document.getElementById('language-switcher');
          if (languageSwitcher) {
              languageSwitcher.addEventListener('change', function() {
-                 window.location.href = '/lang/' + this.value;
+                 window.location.href = window.APP_URL + '/lang/' + this.value;
              });
          }
 
