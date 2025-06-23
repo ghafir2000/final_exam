@@ -58,8 +58,8 @@
     END DEBUGGING OUTPUT -->
 
     <input type="hidden" id="current-user-id" value="{{ Auth::id() }}">
-    <input type="hidden" id="current-user-img-url" value="">
-@endauth
+    <input type="hidden" id="current-user-img-url" value="{{ $loggedInUser->getFirstMediaUrl('profile_picture') ?: asset('images/default_user_avatar.png') }}">
+    @endauth
 
 <!-- CSS for Styling and Animation -->
 <style>
