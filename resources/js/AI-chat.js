@@ -257,7 +257,7 @@ $(document).ready(function() {
 
          // Update UI for loading state...
          chatPartnerNameEl.text('Connecting...');
-         chatPartnerImgEl.attr('src', "assetz('/images/veterinarian_AI.jpg')");
+         chatPartnerImgEl.attr('src', '/images/veterinarian_AI.jpg');
          messageCountEl.text('Loading...');
 
          // Clear previous messages and show loading indicator
