@@ -353,7 +353,7 @@ class ChatController extends Controller
         // --- End AI Integration Logic ---
         $user = $this->userService->find($authenticatedUser->id);
 
-        $profile_picture = asset($user->getFirstMediaUrl('profile_picture')) ?: asset('images/default_user_avatar.jpg'); 
+        $profile_picture = asset($user->getFirstMediaUrl('profile_picture')) ?: asset('images/default_user_avatar.png'); 
 
         // Return the sent message (optionally load sender for the response)
         return response()->json(['status' => 'Message sent!', 'message_data' => $message->load('sender'), 'picture_url' => $profile_picture]);
