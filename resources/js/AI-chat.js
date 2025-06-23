@@ -169,7 +169,7 @@ $(document).ready(function() {
              messageBody.append('<p class="text-muted text-center p-3">Error loading chat.</p>');
              messageCountEl.text('...');
              chatPartnerNameEl.text('Chat Error');
-             chatPartnerImgEl.attr('src', "asset('/images/veterinarian_AI.jpg')");
+             chatPartnerImgEl.attr('src', '/images/veterinarian_AI.jpg');
              sendMessageBtn.off('click');
              messageInput.prop('disabled', true).attr('placeholder', 'Error loading chat.');
              scrollToBottom();
@@ -189,11 +189,11 @@ $(document).ready(function() {
         // Update Header...
         if (chatPartnerInfo) {
             chatPartnerNameEl.text(chatPartnerInfo.name || 'AI Chat');
-            chatPartnerImgEl.attr('src', chatPartnerInfo.image_url || "asset('/images/veterinarian_AI.jpg')");
+            chatPartnerImgEl.attr('src', chatPartnerInfo.image_url || "/images/veterinarian_AI.jpg");
         } else {
              // Default header if no partner info provided
              chatPartnerNameEl.text('AI Chat');
-             chatPartnerImgEl.attr('src', "asset('/images/veterinarian_AI.jpg')");
+             chatPartnerImgEl.attr('src', "/images/veterinarian_AI.jpg");
         }
 
         // Clear and Render Initial Messages...
@@ -257,7 +257,7 @@ $(document).ready(function() {
 
          // Update UI for loading state...
          chatPartnerNameEl.text('Connecting...');
-         chatPartnerImgEl.attr('src', "asset('/images/veterinarian_AI.jpg')");
+         chatPartnerImgEl.attr('src', "/images/veterinarian_AI.jpg");
          messageCountEl.text('Loading...');
 
          // Clear previous messages and show loading indicator
@@ -482,7 +482,7 @@ $(document).ready(function() {
 
                 messageCountEl.text('...');
                 chatPartnerNameEl.text('Chat Closed');
-                chatPartnerImgEl.attr('src', "asset('/images/veterinarian_AI.jpg')");
+                chatPartnerImgEl.attr('src', "/images/veterinarian_AI.jpg");
                 sendMessageBtn.off('click');
                 messageInput.prop('disabled', true).attr('placeholder', 'Chat closed.');
                 scrollToBottom(); // Ensure scrollbar updates correctly for closed state
