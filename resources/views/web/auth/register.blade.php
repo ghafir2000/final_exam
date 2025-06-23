@@ -47,9 +47,10 @@
                             <input type="password" class="form-control @error('password') is-invalid @enderror"
                                 name="password" id="password" required>
                             <button type="button" class="btn btn-outline-secondary" onclick="togglePasswordVisibility()">
-                                <i class="fas fa-eye" aria-hidden="true"></i>
                             </button>
                         </div>
+                        <input type="password" class="form-control @error('password') is-invalid @enderror"
+                            name="password" required>
                         @error('password')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
