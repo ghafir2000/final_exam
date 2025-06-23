@@ -46,8 +46,6 @@
                         <div class="input-group">
                             <input type="password" class="form-control @error('password') is-invalid @enderror"
                                 name="password" id="password" required>
-                            <button type="button" class="btn btn-outline-secondary" onclick="togglePasswordVisibility()">
-                            </button>
                         </div>
                         <input type="password" class="form-control @error('password') is-invalid @enderror"
                             name="password" required>
