@@ -34,10 +34,12 @@ class UserController extends Controller
         $data = $request->validated();
         $is_login = $this->userService->login($data);
 
-        if($is_login) 
+        if($is_login)
             return redirect()->route('blog.index');
-    }
 
+        return redirect()->route('login')->with(['error' => 'Invalid login credentials']);  
+    }
+    
     public function register()
     {
         return view('web.auth.register');
@@ -49,8 +51,7 @@ class UserController extends Controller
         $data = $request->validated();
         // dd($data);
         $this->userService->store($data);
-        return redirect()->route('login');
-        
+        return redirect()->route('login')->with(['success' => 'User created successfully, please login']);
     }
 
     public function show($id)
