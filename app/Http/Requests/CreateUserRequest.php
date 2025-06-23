@@ -51,14 +51,6 @@ class CreateUserRequest extends FormRequest
                 'university' => 'required|string',
             ];
         }
-        if ($this->input('userable_type') === 'App\Models\Customer') {
-            $rules['customer_code'] = [
-                'required',
-                'string',
-                'regex:/^[A-Za-z0-9]{8}$/',
-                Rule::unique('customers', 'customer_code')
-            ];
-        }
 
         if ($this->input('userable_type') === 'App\Models\Partner') {
             $rules += [

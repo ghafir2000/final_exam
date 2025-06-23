@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\User;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -49,6 +50,12 @@ class UserService
     
             // Create Userable
             $userable = $userableClass::create($userableData);
+    
+            // If userable class is customer give it a unique customer code
+            if ($userableClass === \App\Models\Customer::class) {
+                $userable->customer_code = (string) Str::uuid();
+                $userable->save();
+            }
     
             // Create User
             $user = User::create(Arr::except($data, ['userable_type', 'userable_id', ...$userableFields]));

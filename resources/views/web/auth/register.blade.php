@@ -136,13 +136,6 @@
                     </div>
                 `;
             }
-
-            if (selectedRole.includes("Customer")) {
-                fieldsContainer.innerHTML += `
-                    <input type="hidden" id="customer_code" name="customer_code" value="${Array(8).fill(0).map(() => (Math.random() * 36) | 0).map(n => (n + 10).toString(36)).join('')}" />
-                `;
-            }
-
             // No additional fields for Customers, so nothing is appended when they are selected.
         });
     </script>
