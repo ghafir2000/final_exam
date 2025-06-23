@@ -11,15 +11,16 @@ use Illuminate\Support\Facades\Redirect;
 class LocaleController extends Controller
 {
     
-   public function setLocale(string $locale)
+    public function setLocale(string $locale)
     {
-        // dd($locale, config('app.available_locales')); // Debug line 1
+        // Ensure the locale is available in the configuration
         if (array_key_exists($locale, config('app.available_locales'))) {
             App::setLocale($locale);
             Session::put('locale', $locale);
-            // dd(App::getLocale(), Session::get('locale')); // Debug line 2
         }
-        return redirect()->intended(env('APP_URL'));
+
+        // Redirect back to the previous page or to the application's base URL
+        return Redirect::to(url()->previous() ?? config('app.url'));
     }
     
 }
