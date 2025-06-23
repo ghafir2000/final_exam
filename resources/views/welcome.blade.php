@@ -32,7 +32,7 @@
 <body>
     <!-- Background Video -->
     <video id="background-video" autoplay muted>
-        <source src="\videos\welcome_loading_animation.mp4" type="video/mp4">
+        <source src="{{asset('videos\welcome_loading_animation.mp4')}}" type="video/mp4">
         @lang('Your browser does not support the video tag.')
     </video>
 
