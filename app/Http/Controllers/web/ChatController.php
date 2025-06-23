@@ -150,7 +150,7 @@ class ChatController extends Controller
         return response()->json([
             'chat_id' => $chat->id,
             'messages' => $formattedMessages,
-            'user_image' => asset($authUserImageUrl), // Current user's image for "You"
+            'picture_url' => asset($authUserImageUrl), // Current user's image for "You"
             'user_id' => $authUserId,
             'user_model_class' => get_class($authUser),
             'chat_partner' => [

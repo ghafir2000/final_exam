@@ -439,7 +439,7 @@
                     // Use the flag directly provided by the openChat controller
                     const isSentByAuthUser = message.is_auth_user_message;
 
-                    const senderAvatar = message.sender_avatar_url;
+                    const senderAvatar = message.picture_url;
                     const senderName = escapeHtml(message.sender_name || 'Unknown');
                     const messageText = escapeHtml(message.content || '').replace(/\n/g, "<br />"); // Key is 'content'
                     const messageTime = formatTime(message.created_at_raw);
