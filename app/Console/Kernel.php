@@ -10,10 +10,18 @@ class Kernel extends ConsoleKernel
     /**
      * Define the application's command schedule.
      */
+  
+
     protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('inspire')->hourly();
+        // ... other scheduled tasks might be here
+
+        $schedule->command('queue:work --stop-when-empty')
+                ->everyMinute()
+                ->withoutOverlapping();
     }
+
+            
 
     /**
      * Register the commands for the application.
