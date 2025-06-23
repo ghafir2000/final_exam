@@ -48,18 +48,15 @@ class UserService
             $userableFields = (new $userableClass())->getFillable();
             $userableData = Arr::only($data, $userableFields);
     
+            if ($userableClass === \App\Models\Customer::class) {
+                $data['customer_code'] = (string) Str::uuid();
+            } 
             // Create Userable
             $userable = $userableClass::create($userableData);
     
             // If userable class is customer give it a unique customer code
-            if ($userableClass === \App\Models\Customer::class) {
-                $userable->customer_code = (string) Str::uuid();
-                $userable->save();
-            }
-    
-            // Create User
+
             $user = User::create(Arr::except($data, ['userable_type', 'userable_id', ...$userableFields]));
-    
             // Associate the userable with the user
             $user->userable()->associate($userable);
             if ($userableClass !== \App\Models\Customer::class) {
