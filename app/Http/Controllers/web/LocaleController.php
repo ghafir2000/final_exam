@@ -19,7 +19,7 @@ class LocaleController extends Controller
             Session::put('locale', $locale);
             // dd(App::getLocale(), Session::get('locale')); // Debug line 2
         }
-        return Redirect::back();
+        return redirect()->intended(env('APP_URL'));
     }
     
 }
