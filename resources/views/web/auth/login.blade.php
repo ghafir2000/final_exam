@@ -49,14 +49,26 @@
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">@lang('Password')</label>
-                        <input type="password" name="password" class="form-control" id="password" style="background-color: rgba(209, 239, 211, 0.0);">
+                        <div class="input-group">
+                            <input type="password" name="password" class="form-control" id="password" style="background-color: rgba(209, 239, 211, 0.0);">
+                            <button class="btn btn-outline-secondary" type="button" id="password-show-btn">
+                                <i class="fas fa-eye" aria-hidden="true"></i>
+                            </button>
+                        </div>
                         @error('password')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
-                        <button type="button" class="btn btn-outline-secondary" onclick="togglePasswordVisibility()">
-                                <i class="fas fa-eye" aria-hidden="true"></i>
-                        </button>
                     </div>
+
+                    <script>
+                        const passwordShowBtn = document.getElementById('password-show-btn');
+                        const passwordField = document.getElementById('password');
+
+                        passwordShowBtn.addEventListener('click', function() {
+                            const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+                            passwordField.setAttribute('type', type);
+                        });
+                    </script>
                     <button type="submit" class="btn btn-success">@lang('Login')</button>
                     <a href="{{ route('register') }}" class="btn btn-light border border-success">@lang('Register')</a>
                 </form>
